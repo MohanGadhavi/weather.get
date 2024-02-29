@@ -5,13 +5,220 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weatherio</title>
+    <!-- -- FavIcon -- -->
+    <link rel="shortcut icon" href="favicon.svg">
+
+    <!-- -- Custom CSS -- -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <!-- google material icon -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- --- Icon --- -->
+    <script src="https://kit.fontawesome.com/170382d889.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
 
+    <header>
+        <div class="logo title-1">
+            <i class="fa-solid fa-cloud" style="font-size: 1.5em;"></i>
+            <h2 class="">Weather.<span>get</span></h2>
+        </div>
+        <div class="searchBox">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input class="title-2" type="search" placeholder="Search city..." id="searchInput">
+        </div>
+        <div class="loactionBox ">
+            <i class="fa-solid fa-location-crosshairs"></i>
+            <h3 class="title-2">Current Loaction</h3>
+        </div>
+    </header>
 
-    <script src="script.js"></script>
+    <main>
+        <div class="leftParent mainContainers">
+            <div class="leftChild1 mainChildCards">
+                <h3 class="title-2">Now</h3>
+                <div class="result">
+                    <h1 class="heading">5<sup>o</sup>c</h1>
+                    <i class="fa-solid fa-cloud-sun heading"></i>
+                </div>
+                <p class="body-3">Broken Cloud</p>
+                <hr>
+                <div>
+                    <i class="fa-solid fa-calendar body-3"></i>
+                    <p class="body-3">Wednesday 1, Mar</p>
+                </div>
+                <div>
+                    <i class="fa-solid fa-location-dot body-3"></i>
+                    <p class="body-3">London, GB</p>
+                </div>
+            </div>
+            <div class="leftChild2 mainChildCards">
+                <h3 class="title-2">5 Days Forecast</h3>
+                <div class="body-3">
+                    <p>
+                        <i class="fa-solid fa-moon"></i>
+                        7<sup>o</sup>
+                    </p>
+                    <p>2 Mar</p>
+                    <p>Thursday</p>
+                </div>
+                <div class="body-3">
+                    <p><i class="fa-solid fa-moon"></i>7<sup>o</sup></p>
+                    <p>2 Mar</p>
+                    <p>Thursday</p>
+                </div>
+                <div class="body-3">
+                    <p><i class="fa-solid fa-moon"></i>7<sup>o</sup></p>
+                    <p>2 Mar</p>
+                    <p>Thursday</p>
+                </div>
+                <div class="body-3">
+                    <p><i class="fa-solid fa-moon"></i>7<sup>o</sup></p>
+                    <p>2 Mar</p>
+                    <p>Thursday</p>
+                </div>
+                <div class="body-3">
+                    <p><i class="fa-solid fa-moon"></i>7<sup>o</sup></p>
+                    <p>2 Mar</p>
+                    <p>Thursday</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="rightParent mainContainers">
+            <div class="rightChild1 mainChildCards">
+                <h3 class="title-2">Todays Highlights</h3>
+                <div>
+                    <div class="container-big">
+                        <h4 class="body-3 container-title">Air quality index</h4>
+                        <label class="label label-2">
+                            <h3>Good</h3>
+                        </label>
+                        <div>
+                            <i class="fa-solid fa-wind"></i>
+                        </div>
+                        <div>
+                            <p class="body-3">PM<sub>2</sub>S</p>
+                            <h1 class="">3.90</h1>
+                        </div>
+                        <div>
+                            <p class="body-3">SO<sub>2</sub></p>
+                            <h1 class="">7.73</h1>
+                        </div>
+                        <div>
+                            <p class="body-3">NO<sub>2</sub></p>
+                            <h1 class="">33.6</h1>
+                        </div>
+                        <div>
+                            <p class="body-3">O<sub>3</sub></p>
+                            <h1 class="">38.6</h1>
+                        </div>
+                    </div>
+                    <div class="container-big">
+                        <h4 class="body-3 container-title">Sunrise & Sunset</h4>
+                        <div class="icons">
+                            <i class="fa-solid fa-sun"></i>
+                        </div>
+                        <div>
+                            <p class="body-3">Sunrise</p>
+                            <h1 class="">6.46 AM</h1>
+                        </div>
+                        <div class="icons">
+                            <i class="fa-solid fa-moon"></i>
+                        </div>
+                        <div>
+                            <p class="body-3">Sunset</p>
+                            <h1 class="">5.39 PM</h1>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="container-small">
+                        <h4 class="body-3 container-title">
+                            Humidity
+                        </h4>
+                        <i class="fa-solid fa-droplet"></i>
+                        <h1>82<span class="title-1">%</span></h1>
+                    </div>
+                    <div class="container-small">
+                        <h4 class="body-3 container-title">
+                            Pressure
+                        </h4>
+                        <i class="fa-solid fa-gauge"></i>
+                        <h1>1025<span class="title-1">hPa</span></h1>
+                    </div>
+                    <div class="container-small">
+                        <h4 class="body-3 container-title">
+                            Visibility
+                        </h4>
+                        <i class="fa-solid fa-eye"></i>
+                        <h1>10<span class="title-1">km</span></h1>
+                    </div>
+                    <div class="container-small">
+                        <h4 class="body-3 container-title">
+                            Feels Like
+                        </h4>
+                        <i class="fa-solid fa-temperature-half"></i>
+                        <h1>2<sup>o</sup>c</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="rightChild2 mainChildCards">
+                <h3 class="title-2">Today at</h3>
+                <div>
+                    <p class="body-3">9 PM</p>
+                    <i class="fa-solid fa-cloud"></i>
+                    <p class="body-3">5<sup>o</sup></p>
+                </div>
+                <div>
+                    <p class="body-3">9 PM</p>
+                    <i class="fa-solid fa-cloud"></i>
+                    <p class="body-3">5<sup>o</sup></p>
+                </div>
+                <div>
+                    <p class="body-3">9 PM</p>
+                    <i class="fa-solid fa-cloud"></i>
+                    <p class="body-3">5<sup>o</sup></p>
+                </div>
+                <div>
+                    <p class="body-3">9 PM</p>
+                    <i class="fa-solid fa-cloud"></i>
+                    <p class="body-3">5<sup>o</sup></p>
+                </div>
+                <div>
+                    <p class="body-3">9 PM</p>
+                    <i class="fa-solid fa-cloud"></i>
+                    <p class="body-3">5<sup>o</sup></p>
+                </div>
+                <div>
+                    <p class="body-3">9 PM</p>
+                    <i class="fa-solid fa-cloud"></i>
+                    <p class="body-3">5<sup>o</sup></p>
+                </div>
+                <div>
+                    <p class="body-3">9 PM</p>
+                    <i class="fa-solid fa-cloud"></i>
+                    <p class="body-3">5<sup>o</sup></p>
+                </div>
+                <div>
+                    <p class="body-3">9 PM</p>
+                    <i class="fa-solid fa-cloud"></i>
+                    <p class="body-3">5<sup>o</sup></p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+
+    <!-- -- Custom JS -- -->
+    <script src="script.js" type="module"></script>
 </body>
 
 </html>

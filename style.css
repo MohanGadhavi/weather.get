@@ -63,11 +63,14 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scrollbar-color: var(--bg-aqi-1) var(--surface);
 }
 
 html,
 body {
-    height: 100%;
+    height: auto;
     width: 100%;
 }
 
@@ -138,13 +141,14 @@ body {
 
 
 header {
-    width: 100vw;
+    /* width: 100; */
     height: 5em;
     padding: 0px 3em;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid var(--outline);
+    border-bottom: 1px solid var(--outline);
+    background-color: var(--background);
 }
 
 header .logo {
@@ -227,6 +231,7 @@ header .loactionBox:hover {
 
 
 main {
+    max-height: calc(100vh - 5em);
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -241,6 +246,7 @@ main {
 }
 
 .leftParent {
+    max-height: inherit;
     width: 100%;
     flex: 1;
     min-width: 410px;
@@ -253,10 +259,12 @@ main {
 .rightParent {
     flex: 3;
     min-width: 410px;
+    max-height: inherit;
     display: flex;
     flex-direction: column;
     gap: 2em;
     padding: 1em;
+    overflow-y: scroll;
 }
 
 .leftParent .leftChild1 {
@@ -408,12 +416,17 @@ main {
 .rightChild2 {
     width: 100%;
     position: relative;
-    padding: 2em 0em 0em 0em;
-    display: flex;
-    justify-content: space-between;
-    gap: 2em;
+    padding: 0%;
+    padding-top: 1em;
     border-radius: 0%;
     background-color: transparent;
+}
+
+.rightChild2>div {
+    margin-top: 1em;
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5em;
 }
 
 .rightChild2 h3 {
@@ -422,7 +435,7 @@ main {
     top: -0.2em;
 }
 
-.rightChild2 div {
+.rightChild2 .child {
     width: 100%;
     height: 100%;
     padding: 1.5em;
@@ -441,10 +454,49 @@ main {
 
 .rightParent .rightChild2 {
     width: 100%;
-    height: 12em;
+    /* height: 12em; */
 }
 
+footer {
+    width: 100%;
+    margin-top: 1em;
+    padding-top: 1em;
+    color: rgba(255, 255, 255, 0.5);
+    border-top: 2px solid var(--white-alpha-8);
+    text-align: center;
+    letter-spacing: 2px;
+    word-spacing: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4em;
+}
+
+footer a {
+    text-underline-offset: 5px;
+}
+
+footer a:active {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+footer a:visited {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+
+footer>div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+}
+
+
+
 @media screen and (max-width: 500px) {
+    
     header {
         padding: 1em;
     }
@@ -471,15 +523,20 @@ main {
         display: none;
     }
 
+    main {
+        max-height: none;
+    }
+
     .leftParent .leftChild1 {
         gap: 1em;
     }
 
-    .leftChild1 .result{
+    .leftChild1 .result {
         justify-content: space-between;
         /* background-color: #1F331F; */
     }
-    .leftChild1 .result i{
+
+    .leftChild1 .result i {
         margin-right: 0.5em;
         font-size: 5em;
     }
@@ -530,24 +587,33 @@ main {
 
     .rightParent .rightChild2 {
         height: auto;
-        gap: 1em;
-        row-gap: 1em;
-        justify-content: center;
-        align-items: baseline;
-        flex-wrap: wrap;
+        width: auto;
+        overflow-x: scroll;
     }
 
     .rightChild2>div {
+        width: max-content;
+        gap: 1em;
+    }
+
+    .rightChild2 .child {
         padding: 1em;
-        gap: 0.8em;
-        width: min-content;
-        flex-basis: calc(25% - 1em);
-        height: min-content;
-        /* gap: 0.5em; */
+        width: 6.5em;
+        gap: 1em;
     }
 
     .rightChild2 div i {
         font-size: 2em;
+    }
+
+    footer {
+        padding: 3em 0em;
+        flex-direction: column;
+        gap: 3em;
+    }
+
+    footer>div:nth-child(1) {
+        flex-direction: column;
     }
 
 }

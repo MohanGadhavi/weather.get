@@ -29,9 +29,20 @@
             <i class="fa-solid fa-cloud" style="font-size: 1.5em;"></i>
             <h2 class="">Weather.<span>get</span></h2>
         </div>
-        <div class="searchBox">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <input class="title-2" type="search" placeholder="Search city..." id="searchInput">
+        <div class="searchBox" data-search-field>
+            <div class="searchView">
+                <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                <input class="title-2" type="search" name="search" autocomplete="off" placeholder="Search city..."
+                    id="searchInput" data-search-field>
+                <button class="backButton"><i class="fa-solid fa-arrow-left" aria-label="Back Button"></i></button>
+            </div>
+            <div class="searchResults">
+                <!-- <ul>
+                    <li>Hello</li>
+                    <li>My</li>
+                    <li>name</li>
+                </ul> -->
+            </div>
         </div>
         <div class="loactionBox ">
             <i class="fa-solid fa-location-crosshairs"></i>
@@ -264,14 +275,23 @@
                 </div>
                 <div>
                     <p>Powered By</p>
-                    <img src="assets/openweather.png" alt="">
+                    <a href="https://openweathermap.org/"><img src="assets/openweather.png" alt=""></a>
                 </div>
             </footer>
         </div>
 
+        <!-- --- loading --- -->
+        <div class="loading"></div>
+
     </main>
 
-
+    <!-- --- 404 Error section --- -->
+    <section class="errorContent">
+        <h1 class="heading">404</h1>
+        <h2>Page Not Found</h2>
+        <h3>The page you are looking for does not exist.</h3>
+        <a href="index.html">Go Back</a>
+    </section>
 
 
     <!-- -- Custom JS -- -->

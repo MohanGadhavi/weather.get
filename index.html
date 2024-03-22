@@ -29,19 +29,16 @@
             <i class="fa-solid fa-cloud" style="font-size: 1.5em;"></i>
             <h2 class="">Weather.<span>get</span></h2>
         </div>
-        <div class="searchBox" data-search-field>
+        <div class="searchBox" id="searchBox">
             <div class="searchView">
                 <button><i class="fa-solid fa-magnifying-glass"></i></button>
-                <input class="title-2" type="search" name="search" autocomplete="off" placeholder="Search city..."
-                    id="searchInput" data-search-field>
-                <button class="backButton"><i class="fa-solid fa-arrow-left" aria-label="Back Button"></i></button>
+                <input id="searchInput" class="title-2" type="search" name="search" autocomplete="off"
+                    placeholder="Search city..." id="searchInput">
+                <button class="backButton" id="backButton"><i class="fa-solid fa-arrow-left"
+                        aria-label="Back Button"></i></button>
             </div>
-            <div class="searchResults">
-                <!-- <ul>
-                    <li>Hello</li>
-                    <li>My</li>
-                    <li>name</li>
-                </ul> -->
+            <div class="searchResults" id="searchResults">
+
             </div>
         </div>
         <div class="loactionBox ">
@@ -295,7 +292,10 @@
 
 
     <!-- -- Custom JS -- -->
-    <script src="script.js" type="module"></script>
+    <script src="app.js" type="module"></script>
+    <script src="api.js" type="module"></script>
+    <!-- <script src="route.js" type="module"></script>
+    <script src="module.js" type="module"></script> -->
 </body>
 
 </html>

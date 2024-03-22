@@ -219,7 +219,7 @@ header .searchBox {
     display: block;
 }
 
-.searchBox .searchResults li {
+.searchResults li {
     height: 3em;
     padding: 0em 1.5em;
     list-style: none;
@@ -260,9 +260,10 @@ header .searchBox {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 2em;
-    height: 2em;
-    background-color: var(--white-alpha-8);
+    /* width: 3em;
+    height: 3em; */
+    font-size: 1.1em;
+    /* background-color: var(--white-alpha-8); */
     display: none;
     color: var(--bg-aqi-4);
 }
@@ -571,7 +572,7 @@ footer>div {
         width: min-content;
         position: relative;
     }
-
+    
     .searchBox:focus-within{
         position: absolute;
         width: 100%;
@@ -589,7 +590,11 @@ footer>div {
     }
 
     .searchBox .searchResults{
+        top: 100%;
+        padding: 0%;
         border-radius: 0%;
+        max-height: 20em;
+        overflow-y: scroll;
     }
 
     .searchBox input {

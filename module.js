@@ -27,10 +27,11 @@ export const monthNames = [
 
 export const getDate = (dateUnix, timezone) => {
   const date = new Date((dateUnix + timezone) * 1000);
-  const weekDaysName = weekDaysNames[date.getUTCDate()];
+  const weekDaysName = weekDaysNames[date.getUTCDay()];
   const monthName = monthNames[date.getUTCMonth()];
 
-  return `${weekDaysName} ${date.getUTC()}, ${monthName}`;
+  // return `${weekDaysName} ${date.getUTC()}, ${monthName}`;
+  return `${weekDaysName} ${date.getUTCDate()}, ${monthName}`;
 };
 
 export const getTime = (timeUnix, timezone) => {

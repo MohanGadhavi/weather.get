@@ -20,20 +20,28 @@
 
     <!-- --- Icon --- -->
     <script src="https://kit.fontawesome.com/170382d889.js" crossorigin="anonymous"></script>
+
+
+    <!-- -- Custom JS -- -->
+    <script src="app.js" type="module"></script>
+    <script src="route.js" type="module"></script>
+
 </head>
 
 <body>
 
     <header>
         <div class="logo title-1">
-            <i class="fa-solid fa-cloud" style="font-size: 1.5em;"></i>
-            <h2 class="">Weather.<span>get</span></h2>
+            <a href="index.html#/weather?51.6073219&-0.1276475">
+                <i class="fa-solid fa-cloud" style="font-size: 1.5em;"></i>
+                <h2 class="">Weather.<span>get</span></h2>
+            </a>
         </div>
         <div class="searchBox" id="searchBox">
             <div class="searchView">
-                <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button class="searchButton"><i class="fa-solid fa-magnifying-glass"></i></button>
                 <input id="searchInput" class="title-2" type="search" name="search" autocomplete="off"
-                    placeholder="Search city..." id="searchInput">
+                    placeholder="Search City ..." id="searchInput">
                 <button class="backButton" id="backButton"><i class="fa-solid fa-arrow-left"
                         aria-label="Back Button"></i></button>
             </div>
@@ -47,26 +55,28 @@
         </div>
     </header>
 
-    <main>
+    <main data-main>
         <div class="leftParent mainContainers">
-            <div class="leftChild1 mainChildCards">
-                <h3 class="title-2">Now</h3>
-                <div class="result">
-                    <h1 class="heading">5<sup>o</sup>c</h1>
-                    <i class="fa-solid fa-cloud-sun heading"></i>
-                </div>
-                <p class="body-3">Broken Cloud</p>
-                <hr>
-                <div>
-                    <i class="fa-solid fa-calendar body-3"></i>
-                    <p class="body-3">Wednesday 1, Mar</p>
-                </div>
-                <div>
-                    <i class="fa-solid fa-location-dot body-3"></i>
-                    <p class="body-3">London, GB</p>
-                </div>
+            <div data-current-weather>
+                <!-- <div class="leftChild1 mainChildCards">
+                    <h3 class="title-2">Now</h3>
+                    <div class="result">
+                        <h1 class="heading">5&degc</h1>
+                        <i class="fa-solid fa-cloud-sun heading"></i>
+                    </div>
+                    <p class="body-3">Broken Cloud</p>
+                    <hr>
+                    <div>
+                        <i class="fa-solid fa-calendar body-3"></i>
+                        <p class="body-3">Wednesday 1, Mar</p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-location-dot body-3"></i>
+                        <p class="body-3">London, GB</p>
+                    </div>
+                </div> -->
             </div>
-            <div class="leftChild2 mainChildCards">
+            <div class="leftChild2 mainChildCards" data-5d-forecast>
                 <h3 class="title-2">5 Days Forecast</h3>
                 <div class="body-3">
                     <p>
@@ -100,7 +110,7 @@
 
         </div>
         <div class="rightParent mainContainers">
-            <div class="rightChild1 mainChildCards">
+            <div class="rightChild1 mainChildCards" data-highlights>
                 <h3 class="title-2">Todays Highlights</h3>
                 <div>
                     <div class="container-big">
@@ -177,7 +187,7 @@
                     </div>
                 </div>
             </div>
-            <div class="rightChild2 mainChildCards">
+            <div class="rightChild2 mainChildCards" data-hourly>
                 <h3 class="title-2">Today at</h3>
                 <div>
                     <div class="child">
@@ -277,10 +287,11 @@
             </footer>
         </div>
 
-        <!-- --- loading --- -->
-        <div class="loading"></div>
 
     </main>
+
+    <!-- --- loading --- -->
+    <div class="loadingAnimation" data-loading></div>
 
     <!-- --- 404 Error section --- -->
     <section class="errorContent">
@@ -291,11 +302,6 @@
     </section>
 
 
-    <!-- -- Custom JS -- -->
-    <script src="app.js" type="module"></script>
-    <script src="api.js" type="module"></script>
-    <!-- <script src="route.js" type="module"></script>
-    <script src="module.js" type="module"></script> -->
 </body>
 
 </html>

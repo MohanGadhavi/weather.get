@@ -7,8 +7,10 @@ const currentLocation = () => {
   window.navigator.geolocation.getCurrentPosition(
     (res) => {
       const { latitude, longitude } = res.coords;
-
-      updateWeather(`lat=${latitude}, lon=${longitude}`);
+      // console.log(latitude);
+      // console.log(longitude);
+      // updateWeather(`lat=${latitude}, lon=${longitude}`);
+      updateWeather(latitude, longitude);
     },
     (err) => {
       window.location.hash = defaulLocation;
@@ -27,6 +29,7 @@ const routes = new Map([
 
 const checkHash = () => {
   const requestURL = window.location.hash.slice(1);
+  console.log(requestURL);
 
   const [route, query] = requestURL.includes
     ? requestURL.split("?")
@@ -38,6 +41,7 @@ const checkHash = () => {
 window.addEventListener("hashchange", checkHash);
 
 window.addEventListener("load", () => {
+  console.log("hello");
   if (!window.location.hash) {
     window.location.hash = "#/current-location";
   } else {

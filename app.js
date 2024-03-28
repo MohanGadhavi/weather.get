@@ -88,7 +88,6 @@ const mainContainer = document.querySelector("[data-main]");
 const loading = document.querySelector("[data-loading]");
 const currentLocationBtn = document.getElementsByClassName("loactionBox")[0];
 currentLocationBtn.addEventListener("click", () => {
-  console.log("Hello from current location");
   window.location.hash = "#/current-location";
 });
 const errorContent = document.getElementsByClassName("errorContent")[0];
@@ -175,6 +174,7 @@ export const updateWeather = (lat, lon) => {
 
       const card = document.createElement("div");
       card.classList.add("rightChild1", "mainChildCards");
+      card.style.backgroundColor = "var(--on-bg-aqi-${aqi})";
       card.innerHTML = html`
         <h3 class="title-2">Todays Highlights</h3>
         <div>
@@ -209,14 +209,14 @@ export const updateWeather = (lat, lon) => {
           <div class="container-big">
             <h4 class="body-3 container-title">Sunrise & Sunset</h4>
             <div class="icons">
-              <i class="fa-solid fa-sun"></i>
+              <i class="fa-solid fa-sun" style="color: #fdab17"></i>
             </div>
             <div>
               <p class="body-3">Sunrise</p>
               <h1 class="">${module.getTime(sunriseUnixUTC, timezone)}</h1>
             </div>
             <div class="icons">
-              <i class="fa-solid fa-moon"></i>
+              <i class="fa-solid fa-moon" style="color:#7262d4"></i>
             </div>
             <div>
               <p class="body-3">Sunset</p>
@@ -347,5 +347,6 @@ export const updateWeather = (lat, lon) => {
  */
 export const error404 = () => {
   errorContent.style.display = "flex";
+  mainContainer.style.display = "none";
   console.log("Hello error!");
 };

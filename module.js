@@ -36,7 +36,7 @@ export const getDate = (dateUnix, timezone) => {
 
 export const getTime = (timeUnix, timezone) => {
   const date = new Date((timeUnix + timezone) * 1000);
-  const hours = data.getUTCHours();
+  const hours = date.getUTCHours();
   const minutes = date.getUTCMinutes();
   const period = hours >= 12 ? "PM" : "AM";
 
@@ -45,7 +45,7 @@ export const getTime = (timeUnix, timezone) => {
 
 export const getHours = (timeUnix, timezone) => {
   const date = new Date((timeUnix + timezone) * 1000);
-  const hours = data.getUTCHours();
+  const hours = date.getUTCHours();
   const period = hours >= 12 ? "PM" : "AM";
 
   return `${hours % 12 || 12} ${period}`;
@@ -55,14 +55,14 @@ export const mps_to_kmph = (mps) => {
   return mps * 3.6;
 };
 
-export const apiText = {
+export const aqiText = {
   1: {
     level: "Good",
     message:
       "Air quality is considered satisfactory, and air pollution poses tittle or no risk",
   },
   2: {
-    level: "Good",
+    level: "Fair",
     message:
       "Air quality is acceptable; however, for some polltants there may be a moderate health consern for a very small number of people who are usually sensitive to air pollution.",
   },

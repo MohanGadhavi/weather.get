@@ -169,7 +169,8 @@ header .logo {
     text-decoration: none;
     color: inherit;
 }
-.logo a:visited{
+
+.logo a:visited {
     text-decoration: none;
 }
 
@@ -246,7 +247,7 @@ header .searchBox {
     background-color: var(--white-alpha-4);
 }
 
-.searchResults li a{
+.searchResults li a {
     position: absolute;
     inset: 0;
 }
@@ -480,8 +481,27 @@ main {
     top: 0.5em;
     padding: 2px 10px;
     border-radius: var(--radius-16);
+}
+
+.aqi-1 {
     color: var(--on-bg-aqi-1);
     background-color: var(--bg-aqi-1);
+}
+.aqi-2 {
+    color: var(--on-bg-aqi-2);
+    background-color: var(--bg-aqi-2);
+}
+.aqi-3 {
+    color: var(--on-bg-aqi-3);
+    background-color: var(--bg-aqi-3);
+}
+.aqi-4 {
+    color: var(--on-bg-aqi-4);
+    background-color: var(--bg-aqi-4);
+}
+.aqi-5 {
+    color: var(--on-bg-aqi-5);
+    background-color: var(--bg-aqi-5);
 }
 
 .rightChild1 i {
@@ -710,6 +730,10 @@ footer>div {
         font-size: 1.5em;
     }
 
+    .container-big h2 {
+        font-size: 1.35em;
+    }
+
     .rightChild1>div:nth-child(3) {
         flex-wrap: wrap;
         /* background-color: #1F331F; */
@@ -717,7 +741,7 @@ footer>div {
 
     .rightChild1 .container-small {
         padding: 3em 1em 1em 1em;
-        width: 50%;
+        min-width: 40%;
         height: auto;
         flex: 0.5;
         flex-direction: column;

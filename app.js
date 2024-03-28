@@ -17,6 +17,12 @@ document.addEventListener("click", function (event) {
   if (!searchBox.contains(target)) {
     searchResults.style.display = "none";
     searchInput.value = "";
+  } else {
+    if (searchResults.contains(target)) {
+      searchResults.style.display = "none";
+      searchInput.value = "";
+      searchInput.blur();
+    }
   }
 });
 backButton.addEventListener("click", () => {
@@ -41,36 +47,40 @@ searchInput.addEventListener("input", () => {
 
   if (searchInput.value) {
     searchTimeout = setTimeout(() => {
-      fetchData(url.geo(searchInput.value), function (location) {
-        searchResults.style.display = "block";
-        // removeSeraching
-        searchResults.innerHTML = html`<ul id="searchList"></ul> `;
+      fetchData(
+        url.geo(searchInput.value),
+        function (location) {
+          searchResults.style.display = "block";
+          // removeSeraching
+          searchResults.innerHTML = html`<ul id="searchList"></ul> `;
 
-        /*Node List*/
-        const items = [];
+          /*Node List*/
+          const items = [];
 
-        /*show result list*/
-        for (const { name, lat, lon, country, state } of location) {
-          const listItem = document.createElement("li");
-          listItem.classList.add("listItem");
-          listItem.innerHTML = /* HTML*/ html`
-            <i class="fa-solid fa-location-dot"></i>
-            <div>
-              <p>${name}</p>
-              <p>${state || ""} ${country}</p>
-            </div>
-            <a
-              href="#/weather?${lat}&${lon}"
-              aria-label="${name} weather"
-              id="data-search-toggler"
-            ></a>
-          `;
+          /*show result list*/
+          for (const { name, lat, lon, country, state } of location) {
+            const listItem = document.createElement("li");
+            listItem.classList.add("listItem");
+            listItem.innerHTML = /* HTML*/ html`
+              <i class="fa-solid fa-location-dot"></i>
+              <div>
+                <p>${name}</p>
+                <p>${state || ""} ${country}</p>
+              </div>
+              <a
+                href="#/weather?${lat}&${lon}"
+                aria-label="${name} weather"
+                id="data-search-toggler"
+              ></a>
+            `;
 
-          searchResults.querySelector("#searchList").appendChild(listItem);
-          items.push(listItem.querySelector("#data-search-toggler"));
-        }
-      });
-    }, searchTimeoutDuration);
+            searchResults.querySelector("#searchList").appendChild(listItem);
+            items.push(listItem.querySelector("#data-search-toggler"));
+          }
+        },
+        searchTimeoutDuration
+      );
+    });
   }
 });
 
@@ -84,8 +94,7 @@ currentLocationBtn.addEventListener("click", () => {
 const errorContent = document.getElementsByClassName("errorContent")[0];
 
 export const updateWeather = (lat, lon) => {
-  console.log(lat);
-  console.log(lon);
+  // console.log(lat);
   // console.log(lon);
   loading.style.display = "grid";
   mainContainer.style.display = "none";
@@ -102,7 +111,7 @@ export const updateWeather = (lat, lon) => {
   currentWeatherSection.innerHTML = "";
   // forecastSection.innerHTML = "";
   highlightSection.innerHTML = "";
-  // hourlySection.innerHTML = "";
+  hourlySection.innerHTML = "";
 
   // if (window.location.hash === "#/current-location") {
   // }
@@ -128,7 +137,12 @@ export const updateWeather = (lat, lon) => {
       <h3 class="title-2">Now</h3>
       <div class="result">
         <h1 class="heading">${parseInt(temp)}&degc</h1>
-        <i class="fa-solid fa-cloud-sun heading" alt="${description}"></i>
+        <!-- <i class="fa-solid fa-cloud-sun heading" alt="${description}"></i> -->
+        <img
+          src="./assets/weather-icons/${icon}.png"
+          alt="${icon} ${description}"
+          title="${description}"
+        />
       </div>
       <p class="body-3">${description}</p>
       <hr />
@@ -148,6 +162,9 @@ export const updateWeather = (lat, lon) => {
 
     currentWeatherSection.appendChild(card);
 
+    /**
+     * Air polution index section Section
+     */
     fetchData(url.airPollution(lat, lon), (airPollution) => {
       const [
         {
@@ -163,7 +180,10 @@ export const updateWeather = (lat, lon) => {
         <div>
           <div class="container-big">
             <h4 class="body-3 container-title">Air quality index</h4>
-            <label class="label label-2 aqi-${aqi}" title="${module.aqiText[aqi].message}">
+            <label
+              class="label label-2 aqi-${aqi}"
+              title="${module.aqiText[aqi].message}"
+            >
               <h3>${module.aqiText[aqi].level}</h3>
             </label>
             <div>
@@ -230,13 +250,102 @@ export const updateWeather = (lat, lon) => {
 
       highlightSection.appendChild(card);
     });
+
+    /**
+     * 24H Forecast Section
+     */
+    fetchData(url.forecast(lat, lon), (forecast) => {
+      const {
+        list: forecastList,
+        city: { timezone },
+      } = forecast;
+
+      hourlySection.innerHTML = `
+      <h3 class="title-2">Today at</h3>
+      <div temp-list></div>
+      <div wind-list></div>
+      `;
+
+      for (const [index, data] of forecastList.entries()) {
+        if (index > 7) break;
+
+        const {
+          dt: dateTimeUnix,
+          main: { temp },
+          weather,
+          wind: { deg: windDirection, speed: windSpeed },
+        } = data;
+        const [{ icon, description }] = weather;
+
+        const tempListItem = document.createElement("div");
+        tempListItem.classList.add("child");
+        tempListItem.innerHTML = html`
+          <p class="body-3">${module.getHours(dateTimeUnix, timezone)}</p>
+          <!-- <i class="fa-solid fa-cloud" title="${icon}, ${description}"></i> -->
+          <img
+            src="./assets/weather-icons/${icon}.png"
+            alt="${icon} ${description}"
+            title="${description}"
+          />
+          <p class="body-3">${parseInt(temp)}<sup>o</sup></p>
+        `;
+        hourlySection.querySelector("[temp-list]").appendChild(tempListItem);
+
+        const windListItem = document.createElement("div");
+        windListItem.classList.add("child");
+        windListItem.innerHTML = html`
+          <p class="body-3">${module.getHours(dateTimeUnix, timezone)}</p>
+          <i
+            class="fa-solid fa-location-arrow"
+            title="wind direction: ${windDirection}"
+            style="transform: rotate(${windDirection - 180 - 45}deg)"
+          ></i>
+          <p class="body-3">${parseInt(module.mps_to_kmph(windSpeed))} km/hr</p>
+        `;
+        hourlySection.querySelector("[wind-list]").appendChild(windListItem);
+      }
+
+      /**
+       * 5Day Forecast Section
+       */
+      forecastSection.innerHTML = html`
+        <h3 class="title-2">5 Days Forecast</h3>
+      `;
+
+      for (let i = 7, len = forecastList.length; i < len; i += 8) {
+        const {
+          main: { temp_max },
+          weather,
+          dt_txt,
+        } = forecastList[i];
+        const [{ icon, description }] = weather;
+        const date = new Date(dt_txt);
+
+        const fcList = document.createElement("div"); //Forecast list
+        fcList.classList.add("fcList");
+        fcList.innerHTML = html`
+          <div>
+            <!-- <i class="fa-solid fa-moon" title="${icon}, ${description}"></i> -->
+            <img
+              src="./assets/weather-icons/${icon}.png"
+              alt="${icon} ${description}"
+              title="${description}"
+            />
+            <p>${parseInt(temp_max)}<sup>o</sup></p>
+          </div>
+          <p>${date.getDate()} ${module.monthNames[date.getUTCMonth()]}</p>
+          <p>${module.weekDaysNames[date.getUTCDay()]}</p>
+        `;
+        forecastSection.appendChild(fcList);
+      }
+    });
   });
 };
 
+/**
+ * Error 404 Section
+ */
 export const error404 = () => {
+  errorContent.style.display = "flex";
   console.log("Hello error!");
 };
-
-// listItem.addEventListener("click", () => {
-
-// });

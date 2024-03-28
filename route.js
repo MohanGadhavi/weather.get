@@ -1,7 +1,7 @@
 "use strict";
 
 import { updateWeather, error404 } from "./app.js";
-const defaulLocation = "#/weather?lat=51.5073219&lon=-0.1276474"; //london
+const defaulLocation = "#/weather?51.5073219&-0.1276474"; //london
 
 const currentLocation = () => {
   window.navigator.geolocation.getCurrentPosition(
@@ -29,7 +29,7 @@ const routes = new Map([
 
 const checkHash = () => {
   const requestURL = window.location.hash.slice(1);
-  console.log(requestURL);
+  // console.log(requestURL);
 
   const [route, query] = requestURL.includes
     ? requestURL.split("?")
@@ -41,9 +41,10 @@ const checkHash = () => {
 window.addEventListener("hashchange", checkHash);
 
 window.addEventListener("load", () => {
-  console.log("hello");
+  // console.log("hello");
   if (!window.location.hash) {
-    window.location.hash = "#/current-location";
+    // window.location.hash = "#/current-location";
+    window.location.hash = defaulLocation;
   } else {
     checkHash();
   }

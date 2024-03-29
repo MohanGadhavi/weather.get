@@ -405,13 +405,9 @@ main {
 }
 
 .leftChild1 .result {
-    gap: 5em;
+    gap: 6em;
 }
 
-.result img {
-    -webkit-filter: drop-shadow(1px 1px 0 black) drop-shadow(-1px -1px 0 black);
-    filter: drop-shadow(5px 5px 100px var(--bg-aqi-1)) drop-shadow(-5px -5px 100px var(--bg-aqi-1));
-}
 
 
 .leftParent .leftChild2 {
